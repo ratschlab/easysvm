@@ -38,11 +38,38 @@ def plotroc(output, LTE, draw_random=False, figure_fname="", roc_label='ROC'):
     pylab.figure(1,dpi=150,figsize=(4,4))
     fontdict=dict(family="cursive",weight="bold",size=7,y=1.05) ;
 
+    output_a = numpy.array(output)
+    output_m = numpy.zeros((1,len(output_a))) ;
+    for i in range(len(output_a)): output_m[0][i]=output_a[i] ;
+    LTE_a = numpy.array(LTE)
+
+    idx = numpy.lexsort(output_m) ;
+
+    hits = numpy.zeros(len(output_a)) ;
+    false_alarms = numpy.zeros(len(output_a)) ;
+    LTEidxp=numpy.zeros(len(output_a)) ;
+    LTEidxn=numpy.zeros(len(output_a)) ;
+    nump=0 ;
+    numn=0 ;
+    for i in range(len(output_a)):
+        LTEidxp[i] = (LTE_a[idx[i]]>0)
+        LTEidxn[i] = (LTE_a[idx[i]]<0)
+        if LTE_a[i]>0: nump+=1 
+        if LTE_a[i]<0: numn+=1 
+    csLTEidxp=numpy.cumsum(LTEidxp) 
+    csLTEidxn=numpy.cumsum(LTEidxn) 
+
+    for i in range(len(output_a)):
+        hits[i]=1 - csLTEidxp[i]/nump
+        false_alarms[i]=1-csLTEidxn[i]/numn
+    pylab.plot(false_alarms, hits, 'b-', label=roc_label)
+
     pm=PerformanceMeasures(Labels(numpy.array(LTE)), Labels(numpy.array(output)))
 
-    points=pm.get_ROC()
-    points=numpy.array(points).T # for pylab.plot
-    pylab.plot(points[0], points[1], 'b-', label=roc_label)
+    #points=pm.get_ROC()
+    #points=numpy.array(points).T # for pylab.plot
+    #pylab.plot(points[0], points[1], 'b-', label=roc_label)
+
     if draw_random:
         pylab.plot([0, 1], [0, 1], 'r-', label='random guessing')
     pylab.axis([0, 1, 0, 1])
