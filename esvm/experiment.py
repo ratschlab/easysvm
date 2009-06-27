@@ -46,7 +46,7 @@ try:
     LinAddSVM = SVMLight
     LinearSVM = SVMLight
 except:
-    LinAddSVM = GPBTSVM
+    LinAddSVM = LibSVM
     LinearSVM = LibSVM
     
 from shogun.PreProc import SortWordString
