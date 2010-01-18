@@ -39,6 +39,8 @@
 import sys
 from numpy import array, concatenate
 import csv
+import os 
+import re
 
 try:
     import arff
@@ -202,8 +204,13 @@ class DatasetFileFASTA(DatasetFileBase):
 
         assert(line[0] == '>')
         # Use list comprehension to get the integer that comes after label=
-        a = line.split()
-        label = float([b.split('=')[1] for b in a if b.split('=')[0]=='label'][0])
+        try:
+            a = line.split()
+            label = float([b.split('=')[1] for b in a if b.split('=')[0]=='label'][0])
+        except:
+            # not in all cases the label is encoded in the header
+            # in this case return empty label
+            label=None;
 
         lines = []
         line = self.fp.readline()
@@ -252,17 +259,42 @@ def init_datasetfile(filename,extype):
 
 def detect_extension(filename):
     """Get the file extension"""
-    if filename.count('.') > 1:
-        print 'WARNING: %s has more than one . using last one' % filename
-    detect_ext = filename.split('.')[-1]
+
+    fn = os.path.basename(filename)
+    if fn.count('.') > 1:
+        print 'WARNING: %s has more than one . using last one' % fn
+    detect_ext = fn.split('.')[-1]
     if have_arff:
         known_ext = ('csv','arff','fasta','fa')
     else:
         known_ext = ('csv','fasta','fa')
 
     if detect_ext not in known_ext:
-        print 'WARNING: %s is an unknown file extension, defaulting to csv' % detect_ext
+        print 'WARNING: %s is an unknown file extension; ' % detect_ext
         detect_ext = 'csv'
+    if detect_ext == 'csv':
+        fasta_flag = 0
+        arff_flag = 0
+        run_c = 0
+        f = open(filename,'r')
+        for line in f:
+           line = line.strip()
+           if re.match(r'^>',line):
+               fasta_flag = 1
+               break
+           if re.match(r'^@',line):
+               arff_flag = 1
+               break
+           if run_c == 5:
+               break
+        f.close()
+        if fasta_flag == 1:
+           detect_ext = 'fasta'
+        elif arff_flag == 1:
+           detect_ext = 'arff'
+        else:
+           detect_ext = 'csv'
+        print "auto detected format: %s" % detect_ext
 
     return detect_ext
                                         
