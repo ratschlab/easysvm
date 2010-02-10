@@ -35,7 +35,7 @@ def plotroc(output, LTE, draw_random=False, figure_fname="", roc_label='ROC'):
     import pylab
     import matplotlib
 
-    pylab.figure(1,dpi=150,figsize=(4,4))
+    pylab.figure(1,dpi=150,figsize=(8,8))
     fontdict=dict(family="cursive",weight="bold",size=7,y=1.05) ;
 
     output_a = numpy.array(output)
@@ -94,7 +94,7 @@ def plotprc(output, LTE, figure_fname="", prc_label='PRC'):
     import pylab
     import matplotlib
 
-    pylab.figure(2,dpi=150,figsize=(4,4))
+    pylab.figure(2,dpi=150,figsize=(8,8))
 
     pm=PerformanceMeasures(Labels(numpy.array(LTE)), Labels(numpy.array(output)))
 
@@ -123,7 +123,7 @@ def plotcloud(cloud, figure_fname="", label='cloud'):
     import pylab
     import matplotlib
 
-    pylab.figure(1,dpi=150,figsize=(4,4))
+    pylab.figure(1,dpi=150,figsize=(8,8))
 
     pos = [] 
     neg = [] 
@@ -158,7 +158,7 @@ def plot_poims(poimfilename, poim, max_poim, diff_poim, poim_totalmass, poimdegr
     import pylab
     import matplotlib
 
-    pylab.figure(3, dpi=150, figsize=(4,5))
+    pylab.figure(3, dpi=150, figsize=(8,10))
 
     # summary figures
     fontdict=dict(family="cursive",weight="bold",size=7,y=1.05) ;
