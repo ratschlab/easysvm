@@ -653,7 +653,7 @@ def svm_pred(argv):
     (trainex, trainlab, testex, argv_rest) = parse.parse_input_file_train_test(kernelname, argv_rest)
 
     (seq_source, nuc_con) = ('', '')
-    if kernelname == 'spec' or kernelname == 'wd':
+    if kernelname == 'spec' or kernelname == 'wd' or kernelname == 'localimprove' or kernelname == 'localalign':
         if len(argv_rest)<1:sys.stderr.write("outputfile [dna|protein] non(nucleotide|amino)converter are missing\n");sys.exit(-1)
         if len(argv_rest)<2:sys.stderr.write("[dna|protein] non(nucleotide|amino)converter are missing\n");sys.exit(-1)
         if len(argv_rest)<3:
