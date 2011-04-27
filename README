@@ -84,7 +84,7 @@ Cross validation and evaluation on a independent validation set::
 
     easysvm.py cv 5 10 gauss 0.6 arff testcloud1.arff cv_cloud.txt 
     easysvm.py eval cv_cloud.txt arff testcloud1.arff cv_cloud_eval.txt roc roc_cloud_cv.png
-    easysvm.py cv 5 10 wd 10 2 arff testmotif1.arff cv_motif.txt 
+    easysvm.py cv 5 10 wd 10 2 arff testmotif1.arff cv_motif.txt dna R 
     easysvm.py eval cv_motif.txt arff testmotif1.arff cv_motif_eval.txt roc roc_motif_cv.png
 
 Predict on a test set::
@@ -93,20 +93,20 @@ Predict on a test set::
     easysvm.py pred 10 linear arff testcloud1.arff testcloud2.arff pred_cloud.txt
     easysvm.py pred 10 poly 3 true true arff testcloud1.arff testcloud2.arff pred_cloud.txt
 
-    easysvm.py pred 10 wd 10 2 arff testmotif1.arff testmotif2.arff pred_motif.txt
-    easysvm.py pred 10 localalign arff testmotif1.arff testmotif2.arff pred_motif.txt
-    easysvm.py pred 10 localimprove 10 1 1 arff testmotif1.arff testmotif2.arff pred_motif.txt
+    easysvm.py pred 10 wd 10 2 arff testmotif1.arff testmotif2.arff pred_motif.txt dna R
+    easysvm.py pred 10 localalign arff testmotif1.arff testmotif2.arff pred_motif.txt dna R
+    easysvm.py pred 10 localimprove 10 1 1 arff testmotif1.arff testmotif2.arff pred_motif.txt dna R
 
 For some kernels, investigate the importance of different motives::
 
-    easysvm.py poim 10 6 wd 10 2 arff testmotif1.arff poims.png
+    easysvm.py poim 10 6 wd 10 2 arff testmotif1.arff poims.png dna R
 
 We also support the fasta format::
 
-    easysvm.py cv 5 10 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta cv_motif.txt
+    easysvm.py cv 5 10 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta cv_motif.txt dna R
     easysvm.py eval cv_motif.txt fasta testmotifpos.fasta testmotifneg.fasta cv_motif_eval.txt roc roc_motif_cv.png
-    easysvm.py pred 10 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta testmotiftest.fasta pred_motif.txt
-    easysvm.py poim 10 6 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta poims.png
+    easysvm.py pred 10 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta testmotiftest.fasta pred_motif.txt dna R
+    easysvm.py poim 10 6 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta poims.png dna R
 
 Clean up::
 
