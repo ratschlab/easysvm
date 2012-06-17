@@ -1,0 +1,23 @@
+Metadata-Version: 1.0
+Name: easysvm
+Version: 0.2
+Summary: easysvm - A front end to the shogun toolbox
+Home-page: http://www.fml.tuebingen.mpg.de/raetsch/projects/easysvm
+Author: ['Cheng Soon Ong', 'Gunnar Raetsch']
+Author-email: ['chengsoon.ong@tuebingen.mpg.de', 'gunnar.raetsch@tuebingen.mpg.de']
+License: GPLv3
+Description: 
+        easysvm is a front end to the shogun toolbox. It aims to be a
+        'quick start' tutorial for users interested in shogun. As such,
+        it covers only the absolute basics of machine learning.
+        More advanced users should directly use the interfaces provided
+        by shogun.
+        
+        This setup.py installs two modules:
+        - esvm (which contains some basic tools for machine learning with SVMs)
+        - splicesites (which contains tools for splice site prediction)
+        
+        It also installs two scripts (easysvm.py and datagen.py) in the relevant binary directory.
+        The two scripts provide a command line interface to the toolkit.
+        
+Platform: UNKNOWN
