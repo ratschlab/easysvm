@@ -1,0 +1,62 @@
+All programs in this collection are free software: 
+you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Copyright 2008 Cheng Soon Ong, Gunnar Raetsch and Sebastian Schultheiss
+
+
+
+This is a demo corresponding to the PLoS tutorial
+"Support Vector Machines for Sequence Analysis". It is also meant as a
+user "quick start" to using shogun (http://www.shogun-toolbox.org).
+
+
+python datagen.py motif arff gattaca 10 50 10-15 0.1 tttt 100 50 15 0.1 testmotif1.arff
+python datagen.py cloud 100 3 0.6 1.3 testcloud1.arff
+python datagen.py motif arff gattaca 100 50 10-15 0.1 tttt 1000 50 15 0.1 testmotif2.arff
+python datagen.py cloud 1000 3 0.6 1.3 testcloud2.arff
+
+python datagen.py motif fasta gattaca 10 50 10-15 0.1 testmotifpos.fasta
+python datagen.py motif fasta tttt 100 50 15 0.1 testmotifneg.fasta
+python datagen.py motif fasta gattaca 100 50 10-15 0.1 tm1.fasta
+python datagen.py motif fasta tttt 1000 50 15 0.1 tm2.fasta
+cat tm1.fasta tm2.fasta > testmotiftest.fasta
+rm tm1.fasta tm2.fasta
+
+python easysvm.py cv 5 10 gauss 0.6 arff testcloud1.arff cv_cloud.txt 
+python easysvm.py eval cv_cloud.txt arff testcloud1.arff cv_cloud_eval.txt roc roc_cloud_cv.png
+python easysvm.py cv 5 10 wd 10 2 arff testmotif1.arff cv_motif.txt 
+python easysvm.py eval cv_motif.txt arff testmotif1.arff cv_motif_eval.txt roc roc_motif_cv.png
+
+python easysvm.py pred 10 gauss 0.6 arff testcloud1.arff testcloud2.arff pred_cloud.txt
+python easysvm.py pred 10 linear arff testcloud1.arff testcloud2.arff pred_cloud.txt
+python easysvm.py pred 10 poly 3 true true arff testcloud1.arff testcloud2.arff pred_cloud.txt
+
+python easysvm.py pred 10 wd 10 2 arff testmotif1.arff testmotif2.arff pred_motif.txt
+python easysvm.py pred 10 localalign arff testmotif1.arff testmotif2.arff pred_motif.txt
+python easysvm.py pred 10 localimprove 10 1 1 arff testmotif1.arff testmotif2.arff pred_motif.txt
+
+python easysvm.py poim 10 6 wd 10 2 arff testmotif1.arff poims.png
+
+python easysvm.py cv 5 10 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta cv_motif.txt
+python easysvm.py eval cv_motif.txt fasta testmotifpos.fasta testmotifneg.fasta cv_motif_eval.txt roc roc_motif_cv.png
+python easysvm.py pred 10 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta testmotiftest.fasta pred_motif.txt
+python easysvm.py poim 10 6 wd 10 2 fasta testmotifpos.fasta testmotifneg.fasta poims.png
+
+
+rm testmotif1.arff testmotif2.arff testcloud1.arff testcloud2.arff
+rm cv_cloud.txt roc_cloud_cv.png cv_motif.txt roc_motif_cv.png
+rm pred_cloud.txt pred_motif.txt poims.png
+rm testmotifpos.fasta testmotifneg.fasta testmotiftest.fasta
+
+
