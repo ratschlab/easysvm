@@ -1,6 +1,12 @@
+Software: EasySVM
+Authors: Cheng Soon Ong, Gunnar Raetsch
+URL: http://easysvm.org
+
+
 .. This document is written in reStructuredText.
 .. Build command:
    rst2html.py --date --time README README.html
+
 
 =============================================
  easysvm - A front end to the shogun toolbox
