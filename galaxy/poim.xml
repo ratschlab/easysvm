@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <tool id="easypoim" name="Positional Oligomer Matrices">
 <description>Visualize SVMs with WD kernel</description>
-  <command interpreter="bash">easysvm.sh 
+  <command interpreter="python">easysvm.py 
         poim
         $C 
 	${poimdegree}
@@ -39,15 +39,15 @@
     <param name="C" type="float" size="10" value="1" help="Increase C if you trust your training set.">
       <label>SVM regularization parameter C</label>
     </param>
-    <param name="degree" type="integer" size="10" value="8" 
+        <param name="degree" type="integer" size="10" value="8" 
 	  help="Degree controls the maximal length of substrings considered in the WD kernel. ">
 	  <label>The degree of the WD Kernel</label>
-    </param>
-    <param name="shift" type="integer" size="10" value="0"
+        </param>
+        <param name="shift" type="integer" size="10" value="0"
 	  help="The shift parameter controls how many nucleotides a sequence elements can vary in position. ">
           <label>The shift parameter of the WD Kernel to allow positional variations</label>
-    </param>
-    <param name="poimdegree" type="integer" size="10" value="6" help="">
+        </param>
+        <param name="poimdegree" type="integer" size="10" value="6" help="">
           <label>Poim degree</label>
     </param>
         <conditional name="seq">

@@ -234,6 +234,7 @@ def init_datasetfile(filename,extype):
     vec - array of floats
     seq - single sequence
     mseq - multiple sequences
+
     """
     allowedtypes = ('vec','seq','mseq')
     assert(extype in allowedtypes)

@@ -61,7 +61,7 @@ def parse_int_list(str):
 
 def parse_input_file_train(kernelname, argv):
     """Parse the input and output file names"""
-    
+
     if len(argv)<2 or (argv[0]=="fasta" and len(argv)<3) or (argv[0]!='fasta' and argv[0]!='arff'):
         sys.stderr.write("data usage: arff <train.arff>\n        or: fasta <train_pos.fa> <train_neg.fa>\n") 
         sys.exit(-1)
